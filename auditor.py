@@ -13,4 +13,9 @@ while True:
     #exit condition
     if user_input.lower() == 'quit':
         break
-    
+
+    # 3. Validate input is a number
+    if user_input.isdigit():
+        quantity = int(user_input)
+
+        
