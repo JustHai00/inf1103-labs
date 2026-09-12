@@ -46,3 +46,4 @@ while True:
 print("\n===== INVENTORY SUMMARY =====")
 print(f"Total Units Processed: {total_inventory}")
 print(f"Failed/Rejected Entries: {failed_inventory}")
+
