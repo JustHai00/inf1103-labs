@@ -1,0 +1,5 @@
+﻿# Ignore old labs & extras
+*.zip
+*.txt
+desktop.ini
+API*
