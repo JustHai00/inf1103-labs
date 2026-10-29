@@ -37,4 +37,24 @@ def add_product_ui(inventory: Inventory) -> None:
     except ValueError:
         print(" Invalid number entered!")
         return
-     
+
+    product = Product(product_id, name, price, stock)
+    if inventory.add_product(product):
+        print(" Product added successfully!") 
+
+def update_stock_ui(inventory: Inventory) -> None:
+    print("\n--- Update Stock ---")
+    product_id = input("Enter Product ID to update: ").strip()
+    product = inventory.search_product(product_id)
+    if not product:
+        print(" Product not found!")
+        return
+    product.display_information()
+    try:
+        qty = int(input("Enter quantity to add (use negative to subtract): "))
+    except ValueError:
+        print(" Invalid number!")
+        return
+    if product.update_stock(qty):
+        print(" Stock updated!")
+        product.display_information()   
