@@ -36,4 +36,5 @@ def add_product_ui(inventory: Inventory) -> None:
             return
     except ValueError:
         print(" Invalid number entered!")
-        return     
+        return
+     
