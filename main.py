@@ -46,3 +46,21 @@ def load_inventory(inventory: Inventory) -> None:
         print(" No existing inventory file found. Starting fresh.")
     except Exception as e:
         print(f" Error loading file: {e}")   
+
+def add_product_ui(inventory: Inventory) -> None:
+    print("\n--- Add New Product ---")
+    product_id = input("Enter Product ID: ").strip()
+    name = input("Enter Product Name: ").strip()
+    try:
+        price = float(input("Enter Price: $"))
+        stock = int(input("Enter Initial Stock: "))
+        if price < 0 or stock < 0:
+            print(" Price and stock cannot be negative!")
+            return
+    except ValueError:
+        print(" Invalid number entered!")
+        return
+
+    product = Product(product_id, name, price, stock)
+    if inventory.add_product(product):
+        print(" Product added successfully!") 
