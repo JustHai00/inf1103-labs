@@ -2,6 +2,6 @@ FROM python:3.14.7
 
 WORKDIR /app
 
-COPY inventory_manager.py .
+COPY main.py inventory.py product.py ./
 
-CMD ["python", "inventory_manager.py"]
+CMD ["python", "main.py"]
