@@ -81,3 +81,53 @@ def update_stock_ui(inventory: Inventory) -> None:
     if product.update_stock(qty):
         print(" Stock updated!")
         product.display_information() 
+
+def search_product_ui(inventory: Inventory) -> None:
+    print("\n--- Search Product ---")
+    product_id = input("Enter Product ID to search: ").strip()
+    product = inventory.search_product(product_id)
+    if product:
+        print("\n Product Found:")
+        product.display_information()
+    else:
+        print(" Product not found.")  
+
+def main():
+    # Initialize inventory
+    inventory = Inventory()
+    load_inventory(inventory)
+
+    while True:
+        print("\n" + "="*40)
+        print("       INVENTORY MANAGEMENT SYSTEM")
+        print("="*40)
+        print("1. Display All Products")
+        print("2. Add New Product")
+        print("3. Update Stock")
+        print("4. Search Product")
+        print("5. Save Inventory")
+        print("6. Exit")
+        print("="*40)
+
+        choice = input("Enter your choice (1-6): ").strip()
+
+        if choice == "1":
+            inventory.display_all()
+        elif choice == "2":
+            add_product_ui(inventory)
+        elif choice == "3":
+            update_stock_ui(inventory)
+        elif choice == "4":
+            search_product_ui(inventory)
+        elif choice == "5":
+            save_inventory(inventory)
+        elif choice == "6":
+            save_inventory(inventory)
+            print(" Exiting program. Goodbye!")
+            break
+        else:
+            print(" Invalid choice! Please enter 1-6.")
+
+if __name__ == "__main__":
+    main()
+
