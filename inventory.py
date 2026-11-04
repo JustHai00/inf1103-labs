@@ -32,3 +32,10 @@ class Inventory:
         if p:
             return p.update_stock(quantity)
         return False
+
+    # --- JSON Save/Load with type detection ---
+    def save_to_json(self, filename: str = "inventory.json"):
+        data = [p.to_dict() for p in self.__products]
+        with open(filename, "w") as f:
+            json.dump(data, f, indent=2)
+        print(" Inventory saved successfully.")
