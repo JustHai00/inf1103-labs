@@ -2,21 +2,15 @@ from product import Product
 
 class Inventory:
     def __init__(self):
-        self.__products = []  # Stores Product objects
+        self.__products: list[Product] = []
 
-    def add_product(self, product: Product) -> bool:
-        """Add a Product object; prevent duplicate IDs"""
-        if self.search_product(product.get_product_id()):
-            print(" Product with this ID already exists!")
-            return False
+    def add_product(self, product: Product):
         self.__products.append(product)
-        return True
 
     def search_product(self, product_id: str) -> Product | None:
-        """Return Product object if found, else None"""
-        for product in self.__products:
-            if product.get_product_id() == product_id:
-                return product
+        for p in self.__products:
+            if p.get_product_id() == product_id:
+                return p
         return None
 
     def display_all(self) -> None:
