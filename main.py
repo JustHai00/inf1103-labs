@@ -69,3 +69,14 @@ def main():
             else:
                 print(" Product not found.")
 
+        elif choice == "4":
+            pid = input("\nEnter Product ID to search: ").strip()
+            p = inv.search_product(pid)
+            if p:
+                print("\nFound:")
+                print(p.display_information())
+                if hasattr(p, 'calculate_shipping_cost'):
+                    print(f"Shipping cost: ${p.calculate_shipping_cost():.2f}")
+            else:
+                print(" Product not found.")
+
