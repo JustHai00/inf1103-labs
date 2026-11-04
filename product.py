@@ -42,3 +42,8 @@ class Product(ABC):
     def to_dict(self) -> dict:
         """Serialize including type — for JSON saving"""
         pass
+
+    # Common helper for subclasses to reuse
+    def _base_info(self) -> str:
+        return (f"ID: {self.__product_id} | Name: {self.__name} | "
+                f"Price: ${self.__price:.2f} | Stock: {self.__stock}")
