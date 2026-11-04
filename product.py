@@ -101,3 +101,22 @@ class DigitalProduct(Product):
             "stock": self.get_stock(),
             "download_size": self.__download_size
         }
+
+
+class LegacyProduct(Product):
+    """Product loaded from an inventory record without a product type."""
+
+    def get_fulfilment_info(self) -> str:
+        return "Fulfilment details unavailable for this legacy product."
+
+    def display_information(self) -> str:
+        return f"{self._base_info()} | {self.get_fulfilment_info()}"
+
+    def to_dict(self) -> dict:
+        return {
+            "type": "legacy",
+            "product_id": self.get_product_id(),
+            "name": self.get_name(),
+            "price": self.get_price(),
+            "stock": self.get_stock()
+        }
