@@ -39,3 +39,11 @@ class Inventory:
         with open(filename, "w") as f:
             json.dump(data, f, indent=2)
         print(" Inventory saved successfully.")
+
+    def load_from_json(self, filename: str = "inventory.json"):
+        try:
+            with open(filename, "r") as f:
+                data = json.load(f)
+        except FileNotFoundError:
+            print(" No existing inventory file found. Starting fresh.")
+            return
