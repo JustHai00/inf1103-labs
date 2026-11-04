@@ -76,3 +76,28 @@ class PhysicalProduct(Product, CanBeShipped):
             "stock": self.get_stock(),
             "weight": self.__weight
         }
+
+# --- Digital Product ---
+class DigitalProduct(Product):
+    def __init__(self, product_id: str, name: str, price: float, stock: int, download_size: float):
+        super().__init__(product_id, name, price, stock)
+        self.__download_size = download_size  # in MB
+
+    def get_download_size(self): return self.__download_size
+
+    def get_fulfilment_info(self) -> str:
+        return f"Delivered digitally. Download size: {self.__download_size} MB"
+
+    def display_information(self) -> str:
+        base = self._base_info()
+        return f"{base} | Download: {self.__download_size} MB — {self.get_fulfilment_info()}"
+
+    def to_dict(self) -> dict:
+        return {
+            "type": "digital",
+            "product_id": self.get_product_id(),
+            "name": self.get_name(),
+            "price": self.get_price(),
+            "stock": self.get_stock(),
+            "download_size": self.__download_size
+        }
