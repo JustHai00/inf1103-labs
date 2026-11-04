@@ -57,3 +57,15 @@ def main():
             inv.add_product(product)
             print(f" Product added! {product.get_fulfilment_info()}")
 
+        elif choice == "3":
+            pid = input("\nEnter Product ID to update: ").strip()
+            try:
+                qty = int(input("Enter quantity (+ to add, - to remove): "))
+            except ValueError:
+                print(" Invalid number.")
+                continue
+            if inv.update_product_stock(pid, qty):
+                print(" Stock updated.")
+            else:
+                print(" Product not found.")
+
