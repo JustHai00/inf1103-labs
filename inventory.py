@@ -1,4 +1,6 @@
-from product import Product
+import json
+
+from product import DigitalProduct, LegacyProduct, PhysicalProduct, Product
 
 class Inventory:
     def __init__(self):
@@ -50,15 +52,21 @@ class Inventory:
 
         self.__products.clear()
         for item in data:
-            if item["type"] == "physical":
+            product_type = item.get("type")
+            if product_type == "physical":
                 product = PhysicalProduct(
                     item["product_id"], item["name"],
                     item["price"], item["stock"], item["weight"]
                 )
-            elif item["type"] == "digital":
+            elif product_type == "digital":
                 product = DigitalProduct(
                     item["product_id"], item["name"],
                     item["price"], item["stock"], item["download_size"]
+                )
+            elif product_type == "legacy" or product_type is None:
+                product = LegacyProduct(
+                    item["product_id"], item["name"],
+                    item["price"], item["stock"]
                 )
             else:
                 continue  # skip unknown types
