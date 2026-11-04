@@ -47,3 +47,20 @@ class Inventory:
         except FileNotFoundError:
             print(" No existing inventory file found. Starting fresh.")
             return
+
+        self.__products.clear()
+        for item in data:
+            if item["type"] == "physical":
+                product = PhysicalProduct(
+                    item["product_id"], item["name"],
+                    item["price"], item["stock"], item["weight"]
+                )
+            elif item["type"] == "digital":
+                product = DigitalProduct(
+                    item["product_id"], item["name"],
+                    item["price"], item["stock"], item["download_size"]
+                )
+            else:
+                continue  # skip unknown types
+            self.__products.append(product)
+        print(f" Inventory loaded successfully — {len(self.__products)} products.")
