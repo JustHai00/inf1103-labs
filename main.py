@@ -16,3 +16,44 @@ def main():
         print("5. Save Inventory")
         print("6. Exit")
         choice = input("\nEnter your choice (1-6): ")
+
+        if choice == "1":
+            inv.display_all()
+
+        elif choice == "2":
+            print("\n--- Add New Product ---")
+            print("Product type:")
+            print("  1. Physical Product (has weight)")
+            print("  2. Digital Product (has download size)")
+            ptype = input("Enter choice (1 or 2): ")
+
+            pid = input("Enter Product ID: ").strip()
+            name = input("Enter Product Name: ").strip()
+            try:
+                price = float(input("Enter Price: $"))
+                stock = int(input("Enter Initial Stock: "))
+            except ValueError:
+                print(" Invalid number — cancelled.")
+                continue
+
+            if ptype == "1":
+                try:
+                    weight = float(input("Enter Weight (kg): "))
+                except ValueError:
+                    print(" Invalid weight.")
+                    continue
+                product = PhysicalProduct(pid, name, price, stock, weight)
+            elif ptype == "2":
+                try:
+                    size = float(input("Enter Download Size (MB): "))
+                except ValueError:
+                    print(" Invalid size.")
+                    continue
+                product = DigitalProduct(pid, name, price, stock, size)
+            else:
+                print(" Invalid type choice.")
+                continue
+
+            inv.add_product(product)
+            print(f" Product added! {product.get_fulfilment_info()}")
+
