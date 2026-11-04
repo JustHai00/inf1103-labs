@@ -80,3 +80,15 @@ def main():
             else:
                 print(" Product not found.")
 
+        elif choice == "5":
+            inv.save_to_json()
+
+        elif choice == "6":
+            print(" Goodbye!")
+            break
+
+        else:
+            print(" Invalid choice — try 1-6.")
+
+if __name__ == "__main__":
+    main()
