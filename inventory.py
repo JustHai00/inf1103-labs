@@ -13,18 +13,22 @@ class Inventory:
                 return p
         return None
 
-    def display_all(self) -> None:
-        """Show all products"""
+    def display_all(self):
         if not self.__products:
-            print(" Inventory is empty.")
+            print("No products in inventory.")
             return
-        print("\n" + "="*65)
-        print(" " * 15 + "INVENTORY LIST")
-        print("="*65)
-        for product in self.__products:
-            product.display_information()
-        print("="*65 + "\n")
+        print("\n" + "="*60)
+        print("INVENTORY LIST")
+        print("="*60)
+        for p in self.__products:
+            print(p.display_information())
+            # Show shipping cost if applicable
+            if hasattr(p, 'calculate_shipping_cost'):
+                print(f"  → Shipping cost: ${p.calculate_shipping_cost():.2f}")
+        print("="*60 + "\n")
 
-    def get_all_products(self) -> list[Product]:
-        """Return list of products for saving to file"""
-        return self.__products
+    def update_product_stock(self, product_id: str, quantity: int) -> bool:
+        p = self.search_product(product_id)
+        if p:
+            return p.update_stock(quantity)
+        return False
