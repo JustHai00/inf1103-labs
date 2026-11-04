@@ -20,3 +20,25 @@ class Product(ABC):
     def get_name(self): return self.__name
     def get_price(self): return self.__price
     def get_stock(self): return self.__stock
+
+    # Setters
+    def update_stock(self, quantity: int) -> bool:
+        if isinstance(quantity, int):
+            self.__stock += quantity
+            return True
+        return False
+
+    @abstractmethod
+    def get_fulfilment_info(self) -> str:
+        """Return delivery/shipping message — MUST implement in subclasses"""
+        pass
+
+    @abstractmethod
+    def display_information(self) -> str:
+        """Show product details — override in subclasses"""
+        pass
+
+    @abstractmethod
+    def to_dict(self) -> dict:
+        """Serialize including type — for JSON saving"""
+        pass
