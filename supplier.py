@@ -6,3 +6,6 @@ class Supplier:
 
     def get_supplier_id(self) -> str:
         return self.__supplier_id
+
+    def get_name(self) -> str:
+        return self.__name
