@@ -16,4 +16,9 @@ class OrderLine:
 
     def display(self) -> str:
         return f"{self.__product.get_name()} × {self.__quantity} = ${self.calculate_subtotal():.2f}"
-    
+
+class Order:
+    def __init__(self, order_id: str):
+        self.__order_id: str = order_id
+        self.__order_lines: list[OrderLine] = []
+        
