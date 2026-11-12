@@ -32,3 +32,9 @@ class Order:
         for line in self.__order_lines:
             total += line.calculate_subtotal()
         return total   
+
+    def display_order(self) -> None:
+        print(f"\n=== Order: {self.__order_id} ===")
+        for line in self.__order_lines:
+            print(f"  {line.display()}")
+        print(f"  TOTAL: ${self.calculate_total():.2f}")
