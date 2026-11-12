@@ -9,3 +9,6 @@ class Supplier:
 
     def get_name(self) -> str:
         return self.__name
+
+    def get_email(self) -> str:
+        return self.__contact_email
