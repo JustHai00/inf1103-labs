@@ -12,3 +12,6 @@ class Supplier:
 
     def get_email(self) -> str:
         return self.__contact_email
+    
+    def display_information(self) -> str:
+        return f"Supplier: {self.__name} (ID: {self.__supplier_id}) | Email: {self.__contact_email}"
