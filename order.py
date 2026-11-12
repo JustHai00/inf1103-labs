@@ -25,4 +25,10 @@ class Order:
     def add_order_line(self, product: Product, quantity: int) -> None:
         # COMPOSITION: Order CREATES its own OrderLine objects
         new_line = OrderLine(product, quantity)
-        self.__order_lines.append(new_line)   
+        self.__order_lines.append(new_line)
+
+    def calculate_total(self) -> float:
+        total = 0.0
+        for line in self.__order_lines:
+            total += line.calculate_subtotal()
+        return total   
