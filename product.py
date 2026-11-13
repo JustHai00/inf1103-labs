@@ -32,3 +32,59 @@ class Product(ABC):
 
     @abstractmethod
     def to_dict(self) -> dict: pass
+
+
+class PhysicalProduct(Product):
+    def __init__(self, product_id: str, name: str, price: float, stock: int,
+                 weight: float, supplier: Supplier):
+        super().__init__(product_id, name, price, stock, supplier)
+        self.__weight = weight
+
+    def get_weight(self) -> float:
+        return self.__weight
+
+    def get_fulfilment_info(self) -> str:
+        return f"Physical item weighing {self.__weight} kg"
+
+    def display_information(self) -> str:
+        return (f"Physical Product: {self.get_name()} "
+                f"(ID: {self.get_product_id()}) | Price: ${self.get_price():.2f} "
+                f"| Stock: {self.get_stock()} | Weight: {self.__weight} kg")
+
+    def to_dict(self) -> dict:
+        return {
+            "type": "physical",
+            "product_id": self.get_product_id(),
+            "name": self.get_name(),
+            "price": self.get_price(),
+            "stock": self.get_stock(),
+            "weight": self.__weight,
+        }
+
+
+class DigitalProduct(Product):
+    def __init__(self, product_id: str, name: str, price: float, stock: int,
+                 download_size: float, supplier: Supplier):
+        super().__init__(product_id, name, price, stock, supplier)
+        self.__download_size = download_size
+
+    def get_download_size(self) -> float:
+        return self.__download_size
+
+    def get_fulfilment_info(self) -> str:
+        return f"Digital download ({self.__download_size} MB)"
+
+    def display_information(self) -> str:
+        return (f"Digital Product: {self.get_name()} "
+                f"(ID: {self.get_product_id()}) | Price: ${self.get_price():.2f} "
+                f"| Stock: {self.get_stock()} | Download size: {self.__download_size} MB")
+
+    def to_dict(self) -> dict:
+        return {
+            "type": "digital",
+            "product_id": self.get_product_id(),
+            "name": self.get_name(),
+            "price": self.get_price(),
+            "stock": self.get_stock(),
+            "download_size": self.__download_size,
+        }
