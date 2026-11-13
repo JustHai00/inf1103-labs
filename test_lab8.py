@@ -57,3 +57,9 @@ ord2.display_order()
 # Check: 1 Product, 2 OrderLines
 print(f"\nProduct object same? {ord1._Order__order_lines[0].get_product() is ord2._Order__order_lines[0].get_product()}")  # True = same Product
 print(f"OrderLine objects same? {ord1._Order__order_lines[0] is ord2._Order__order_lines[0]}")  # False = different OrderLines 
+
+# === TEST 4: Polymorphism & LSP ===
+print("\n=== TEST 4: Polymorphism & LSP ===")
+products = [laptop, ebook]
+for p in products:
+    show_product_details(p)
