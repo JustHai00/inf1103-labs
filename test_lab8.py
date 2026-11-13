@@ -42,3 +42,18 @@ print(f"Product still works: {phone.display_information()}")
 # Transfer to Inventory B
 inv_b.add_product(phone)
 print(f"Added to Inventory B: {inv_b.find_product('P002').get_name()}")
+
+# === TEST 3: Composition ===
+print("\n=== TEST 3: Composition ===")
+ord1 = Order("ORD-001")
+ord2 = Order("ORD-002")
+
+ord1.add_order_line(laptop, 2)
+ord2.add_order_line(laptop, 1)  # Same product, different order lines
+
+ord1.display_order()
+ord2.display_order()
+
+# Check: 1 Product, 2 OrderLines
+print(f"\nProduct object same? {ord1._Order__order_lines[0].get_product() is ord2._Order__order_lines[0].get_product()}")  # True = same Product
+print(f"OrderLine objects same? {ord1._Order__order_lines[0] is ord2._Order__order_lines[0]}")  # False = different OrderLines 
