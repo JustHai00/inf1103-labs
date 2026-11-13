@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from supplier import Supplier  # import your new class
 
 class Product(ABC):
-    # ✅ UPDATED: added supplier parameter + type hint
+    #  UPDATED: added supplier parameter + type hint
     def __init__(self, product_id: str, name: str, price: float, 
                  stock: int, supplier: Supplier):
         self.__product_id = product_id
