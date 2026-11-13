@@ -13,3 +13,11 @@ print("\n=== TEST 1: Association ===")
 supplier = Supplier("S001", "Tech Supplies Co", "sales@techsupplies.com")
 laptop = PhysicalProduct("P001", "Gaming Laptop", 1599.99, 10, 2.8, supplier)
 ebook = DigitalProduct("D001", "Python Guide", 39.99, 100, 85, supplier)
+
+print("Before deleting supplier:")
+print(laptop.display_information())
+print(f"Supplier: {laptop.get_supplier().get_name()}")
+
+del supplier  # delete original reference
+print("\nAfter deleting supplier variable:")
+print(f"Laptop still knows supplier: {laptop.get_supplier().get_name()}")  # Still works!
