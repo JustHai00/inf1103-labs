@@ -1,9 +1,10 @@
 from product import Product
 from discount_strategy import DiscountStrategy, NoDiscount
 
+
 class OrderLine:
     def __init__(self, product: Product, quantity: int):
-        # VALIDATION: quantity must be > 0
+        # ✅ Validation — quantity must be positive
         if quantity <= 0:
             raise ValueError("Quantity must be greater than zero.")
         self.__product = product
@@ -26,7 +27,7 @@ class Order:
     def __init__(self, order_id: str, discount_strategy: DiscountStrategy = None):
         self.__order_id: str = order_id
         self.__order_lines: list[OrderLine] = []
-        #  Use NoDiscount if none provided
+        # Use NoDiscount if none provided
         self.__discount = discount_strategy if discount_strategy else NoDiscount()
 
     def set_discount(self, discount_strategy: DiscountStrategy) -> None:
