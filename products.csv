@@ -1,0 +1,4 @@
+product_type,product_id,name,price,stock_quantity,weight,download_size
+physical,P001,Desk Lamp,25.00,10,1.2,
+digital,D001,Photo Editor,49.90,100,,85
+physical,P003,Monitor Stand,39.50,7,0.5,
