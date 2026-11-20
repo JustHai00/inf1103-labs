@@ -3,13 +3,21 @@ from supplier import Supplier  # import your new class
 
 class Product(ABC):
     #  UPDATED: added supplier parameter + type hint
-    def __init__(self, product_id: str, name: str, price: float, 
-                 stock: int, supplier: Supplier):
-        self.__product_id = product_id
-        self.__name = name
-        self.__price = price
-        self.__stock = stock
-        self.__supplier = supplier  # Association — stores reference only
+   def __init__(self, product_id: str, name: str, price: float, 
+             stock: int, supplier: Supplier):
+    #  NEW — Validation checks
+    if price <= 0:
+        raise ValueError("Price must be greater than zero.")
+    if stock < 0:
+        raise ValueError("Stock quantity cannot be negative.")
+
+    # Then assign to instance variables    
+    self.__product_id = product_id
+    self.__product_id = product_id
+    self.__name = name
+    self.__price = price
+    self.__stock = stock
+    self.__supplier = supplier  
 
     # Getters
     def get_product_id(self) -> str: return self.__product_id
