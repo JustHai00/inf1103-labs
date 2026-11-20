@@ -65,7 +65,11 @@ if __name__ == "__main__":
     price = get_positive_float("Enter price: $")
     print(f"You entered: ${price}")
 
-    print("\n===== TEST 2: Load CSV =====")
+    print("\n===== TEST 2: Load CSV with Bad Rows =====")
     supplier = Supplier("S001", "Tech Supplies", "sales@tech.com")
     inv = Inventory()
     load_products_safely("products.csv", inv, supplier)
+
+    print("\n===== TEST 3: Missing File =====")
+    load_products_safely("file_does_not_exist.csv", inv, supplier)
+
