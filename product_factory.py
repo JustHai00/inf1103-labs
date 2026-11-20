@@ -2,7 +2,7 @@ from product import Product, PhysicalProduct, DigitalProduct
 from supplier import Supplier
 
 class ProductFactory:
-    @staticcmethod
+    @staticmethod
     def create(
         product_type: str,
         product_id: str,
@@ -10,11 +10,12 @@ class ProductFactory:
         price: float,
         stock_quantity: int,
         supplier: Supplier,
-        ** extra
+        **extra
     ) -> Product:
-        # VALIDATION: price and stock checked HERE or in Product
+        #  VALIDATION: price and stock checked HERE or in Product
         if price <= 0:
-            if stock_quantity < 0:
+            raise ValueError("Price must be greater than zero.")
+        if stock_quantity < 0:
             raise ValueError("Stock quantity cannot be negative.")
 
         if product_type.lower() == "physical":
@@ -24,7 +25,6 @@ class ProductFactory:
             return PhysicalProduct(
                 product_id, name, price, stock_quantity, weight, supplier
             )
-        
         elif product_type.lower() == "digital":
             download_size = extra.get("download_size")
             if download_size is None:
@@ -32,4 +32,5 @@ class ProductFactory:
             return DigitalProduct(
                 product_id, name, price, stock_quantity, download_size, supplier
             )
-        
+        else:
+            raise ValueError(f"Unknown product type: {product_type}")
