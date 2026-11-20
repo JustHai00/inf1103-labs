@@ -25,3 +25,11 @@ class ProductFactory:
                 product_id, name, price, stock_quantity, weight, supplier
             )
         
+        elif product_type.lower() == "digital":
+            download_size = extra.get("download_size")
+            if download_size is None:
+                raise ValueError("Digital product requires 'download_size' value.")
+            return DigitalProduct(
+                product_id, name, price, stock_quantity, download_size, supplier
+            )
+        
