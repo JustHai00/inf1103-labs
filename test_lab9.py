@@ -56,3 +56,16 @@ def load_products_safely(file_path: str, inventory: Inventory, supplier: Supplie
     
     finally:
         print(" Load operation completed.")
+
+# ==============================================
+#  TEST — Run Everything
+# ==============================================
+if __name__ == "__main__":
+    print("===== TEST 1: User Input =====")
+    price = get_positive_float("Enter price: $")
+    print(f"You entered: ${price}")
+
+    print("\n===== TEST 2: Load CSV =====")
+    supplier = Supplier("S001", "Tech Supplies", "sales@tech.com")
+    inv = Inventory()
+    load_products_safely("products.csv", inv, supplier)
