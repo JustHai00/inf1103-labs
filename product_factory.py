@@ -17,3 +17,11 @@ class ProductFactory:
             if stock_quantity < 0:
             raise ValueError("Stock quantity cannot be negative.")
 
+        if product_type.lower() == "physical":
+            weight = extra.get("weight")
+            if weight is None:
+                raise ValueError("Physical product requires 'weight' value.")
+            return PhysicalProduct(
+                product_id, name, price, stock_quantity, weight, supplier
+            )
+        
