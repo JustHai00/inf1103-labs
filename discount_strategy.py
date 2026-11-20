@@ -8,3 +8,10 @@ class DiscountStrategy(ABC):
 class NoDiscount(DiscountStrategy):
     def apply(self, total: float) -> float:
         return total
+
+class PercentageDiscount(DiscountStrategy):
+    def __init__(self, percentage: float):
+        self.percentage = percentage #e.g. 10 = 10% discount
+
+    def apply(self, total: float) -> float:
+        return total * (1 - self.percentage / 100)
